@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.input-text {
+    display: flex;
+    justify-content: flex-start;
+}
+
+::-ms-reveal {
+    display: none;
+  }
+
+.caixa-texto {
+    margin: 1% 0;
+    padding: 10px;
+    outline: none;
+    width: 50vh;
+    border: 1.5px solid green;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.caixa-texto:focus {
+    border: 1.5px solid #00b4d8;
+}
+
+.required {
+    border: 1.5px solid rgb(255, 0, 0);
+}
+
+.input-text img {
+    width: 2px;
+    cursor: pointer;
+}
+
+.botao-olho {
+    border: green;
+    background-color: black;
+    margin: 1% 0;
+    padding: 1%;
+    border-radius: 5px;
+    width: 2px;
+}
