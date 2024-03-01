@@ -7,8 +7,8 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import { Input } from "../../components/input/Input";
 import { Button } from "../../components/button/Button";
 import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logoBS.svg"
 import Navbar from "../../components/navbar/Navbar";
-
 
 const RegisterUser = () => {
 
@@ -87,56 +87,75 @@ const RegisterUser = () => {
   } catch (error) {
    toast.error("Erro ao criar usuário");
   }
-  console.log(user);
  }
 
  return (
-  <main>
-   <ToastContainer />
+  <section className="min-h-screen bg-gray-50 dark:bg-gray-900">
    <Navbar />
-   <h1 className="container=mx-auto text-3xl font-bold text-center">Register User</h1>
-   <form onSubmit={onSubmitHandler} className="gap-4 w-1/3 mx-auto">
-    <Input
-     required={true}
-     invalid={firstname.invalid ?? false}
-     placeholder="firstName"
-     type="text"
-     onChange={setFirstName}
-    />
-    <Input
-     required={true}
-     invalid={lastname.invalid ?? false}
-     type="text"
-     placeholder="LastName"
-     onChange={(event) => {
-      setLastName(event);
-     }}
-    />
-    <Input
-     required={true}
-     invalid={email.invalid ?? false}
-     type="text"
-     placeholder="email"
-     onChange={(event) => {
-      setEmail(event);
-     }}
-    />
-    <Input
-     required={true}
-     invalid={password.invalid ?? false}
-     type="password"
-     placeholder="password"
-     onChange={(event) => {
-      setPassword(event);
-     }}
-    />
-    <Button
-     text="Register"
-     send={onSubmitHandler}
-     parameters={[]}
-    />
-   </form>
-  </main>
+   <ToastContainer />
+   <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+     <img className="w-8 h-8 mr-2" src={logo} alt="logo" />
+     BalanceSheets
+    </a>
+    <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+       Faça o cadastro de uma nova conta
+      </h1>
+      <div>
+       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Nome</label>
+       <Input
+        required={true}
+        invalid={firstname.invalid ?? false}
+        placeholder="firstName"
+        type="text"
+        onChange={setFirstName}
+       />
+       <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Sobrenome</label>
+       <Input
+        required={true}
+        invalid={lastname.invalid ?? false}
+        type="text"
+        placeholder="LastName"
+        onChange={(event) => {
+         setLastName(event);
+        }}
+       />
+       <div>
+        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Email</label>
+        <Input
+         required={true}
+         invalid={email.invalid ?? false}
+         type="text"
+         placeholder="email"
+         onChange={(event) => {
+          setEmail(event);
+         }}
+        />
+        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Senha</label>
+        <Input
+         required={true}
+         invalid={password.invalid ?? false}
+         type="password"
+         placeholder="password"
+         onChange={(event) => {
+          setPassword(event);
+         }}
+        />
+        <div className="pt-4">
+         <Button
+          text="Register"
+          send={onSubmitHandler}
+          parameters={[]}
+         />
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
  );
 }
 export default RegisterUser;
