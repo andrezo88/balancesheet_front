@@ -7,7 +7,6 @@ export default class CadastroService {
    const response = await axios.post("http://localhost:8080/api/v1/auth/authenticate", user, {
    }).then((response) => {
     localStorage.setItem("token", JSON.stringify(response.data));
-    console.log(response.data);
     return response.data;
    })
    return response;

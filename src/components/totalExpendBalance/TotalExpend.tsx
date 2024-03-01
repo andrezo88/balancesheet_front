@@ -8,15 +8,17 @@ interface TotalExpendbalanceProps {
 }
 
 const TotalExpendbalance: React.FC<TotalExpendbalanceProps> = ({ startDate, endDate }) => {
- const [total, setTotal] = useState<any>(0);
-
+ const [total, setTotal] = useState<string>("");
+ total
  useEffect(() => {
   const fetchTotalExpendBalance = async () => {
    try {
     const totalService = new TotalService();
     const response = await totalService.getTotalExpendBalance(startDate, endDate);
-    console.log("Response from TotalService:", response);
-    setTotal(response); // Adicione console.log aqui para verificar o valor sendo definido
+    response.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    setTotal(response.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) ?? 0);
+    console.log(typeof (response))
+
    } catch (error) {
     console.error("Error fetching total expend balance:", error);
    }
@@ -25,11 +27,10 @@ const TotalExpendbalance: React.FC<TotalExpendbalanceProps> = ({ startDate, endD
   fetchTotalExpendBalance();
  }, [startDate, endDate]);
 
- console.log("Total in component state:", total);
-
+ console.log(typeof (total))
  return (
-  <div className="totalExpendBalance">
-   <span className="totalExpendBalance">R$: {total}</span>
+  <div className="bg-gray-900">
+   <span className="text-3xl font-bold text-white">Total em despesas: {total}</span>
   </div>
  );
 }

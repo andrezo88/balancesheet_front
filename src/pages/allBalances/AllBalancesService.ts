@@ -13,13 +13,9 @@ export default class AllBalancesService {
      startDate: startDate,
      endDate: endDate,
      size: size,
-     userId: localStorage.getItem("userId") ?? "",
     }
-
-   }).then((response) => {
-    return response.data.content;
    });
-   return response;
+   return response.data.content;
   } catch (error) {
    console.error("Error creating balance:", error);
    throw error;

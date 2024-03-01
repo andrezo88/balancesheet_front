@@ -15,7 +15,6 @@ export default class TotalService {
      userId: localStorage.getItem("userId") ?? "",
     }
    });
-   console.log("Full response data:", typeof (response.data));
    return response.data;
   } catch (error) {
    console.error("Error fetching total expend balance:", error);

@@ -12,7 +12,6 @@ export default class AddBalanceService {
      Authorization: `Bearer ${this.loginToken.token}`
     }
    }).then((response) => {
-    console.log(response.data);
     return response.data;
    });
    return response;
