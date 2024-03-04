@@ -145,7 +145,7 @@ const RegisterUser = () => {
         />
         <div className="pt-4">
          <Button
-          text="Register"
+          text="Registrar"
           send={onSubmitHandler}
           parameters={[]}
          />

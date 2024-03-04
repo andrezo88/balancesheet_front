@@ -13,7 +13,7 @@ import logo from "../../assets/logoBS.svg"
 const AddBalance = () => {
   const service = new AddBalanceService();
   const navigate = useNavigate();
-  const typeEnum: Array<string> = ["DEBIT", "CREDIT", "PIX", "CASH"];
+  const typeEnum: Array<string> = ["", "DEBIT", "CREDIT", "PIX", "CASH"];
 
   const [amount, setAmount] = useState<IInput>({
     value: "",

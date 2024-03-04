@@ -10,10 +10,12 @@ interface ButtonProps {
 
 export const Button = ({ text, send, parameters }: ButtonProps): any => {
   return (
-    <>
-      <button type="submit"
+    <div className="flex justify-center"> {/* Center the button horizontally */}
+      <button
+        type="submit"
         className="
-        w-full 
+        bg-gray-700
+        w-3/4
         text-white 
         bg-primary-600 
         hover:bg-primary-700 
@@ -29,7 +31,10 @@ export const Button = ({ text, send, parameters }: ButtonProps): any => {
         dark:bg-primary-600 
         dark:hover:bg-primary-700 
         dark:focus:ring-primary-800"
-        onClick={(e) => send(e, ...parameters)}>{text}</button>
-    </>
+        onClick={(e) => send(e, ...parameters)}
+      >
+        {text}
+      </button>
+    </div>
   );
 };

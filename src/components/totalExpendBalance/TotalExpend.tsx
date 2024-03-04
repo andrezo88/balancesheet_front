@@ -5,16 +5,17 @@ import TotalService from "./TotalService";
 interface TotalExpendbalanceProps {
  startDate: string;
  endDate: string;
+ size: number;
 }
 
-const TotalExpendbalance: React.FC<TotalExpendbalanceProps> = ({ startDate, endDate }) => {
+const TotalExpendbalance: React.FC<TotalExpendbalanceProps> = ({ startDate, endDate, size }) => {
  const [total, setTotal] = useState<string>("");
  total
  useEffect(() => {
   const fetchTotalExpendBalance = async () => {
    try {
     const totalService = new TotalService();
-    const response = await totalService.getTotalExpendBalance(startDate, endDate);
+    const response = await totalService.getTotalExpendBalance(startDate, endDate, size);
     response.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
     setTotal(response.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) ?? 0);
     console.log(typeof (response))
@@ -25,7 +26,7 @@ const TotalExpendbalance: React.FC<TotalExpendbalanceProps> = ({ startDate, endD
   };
 
   fetchTotalExpendBalance();
- }, [startDate, endDate]);
+ }, [startDate, endDate, size]);
 
  console.log(typeof (total))
  return (

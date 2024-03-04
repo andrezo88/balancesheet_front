@@ -11,8 +11,9 @@ import TotalExpendbalance from "../../components/totalExpendBalance/TotalExpend"
 
 const AllBalances = () => {
 
+ const sizeEnum = [10, 20, 50, 100];
  const currentDate = moment().format('YYYY-MM-DD').toString();
- const lastWeek = moment(currentDate).subtract(17, 'days').format('YYYY-MM-DD').toString();
+ const lastWeek = moment(currentDate).subtract(7, 'days').format('YYYY-MM-DD').toString();
 
  const [balances, setBalances] = useState<IBalanceResponse[]>([]);
  const [startDate, setStartDate] = useState<IInput>({
@@ -52,22 +53,63 @@ const AllBalances = () => {
      <h1 className="text-3xl font-bold text-center sm:py-16 md:py-20 lg:py-24 text-white">Todos os lançamentos de gastos.</h1>
      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center sm:gap-6 sm:pb-20">
       <label className="text-lg text-white">Data inicial:</label>
-      <Input
-       required={true}
-       placeholder="Data inicial"
-       type="date"
-       invalid={startDate.invalid}
-       onChange={setStartDate}
-      />
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center sm:gap-6 w-32">
+       <Input
+        required={true}
+        placeholder="Data inicial"
+        type="date"
+        invalid={startDate.invalid}
+        onChange={setStartDate}
+       />
+      </div>
       <label className="text-lg text-white">Data final:</label>
-      <Input
-       required={true}
-       placeholder="Data final"
-       type="date"
-       invalid={endDate.invalid}
-       onChange={setEndDate}
-      />
-      <div className="h-8 w-20">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center sm:gap-6 w-32">
+       <Input
+        required={true}
+        placeholder="Data final"
+        type="date"
+        invalid={endDate.invalid}
+        onChange={setEndDate}
+       />
+      </div>
+      <label className="text-lg text-white">Exibir por página:</label>
+      <select
+       className="
+       bg-gray-50 
+       border 
+       border-gray-300 
+       text-gray-900 
+       sm:text-sm 
+       rounded-lg 
+       focus:ring-primary-600 
+       focus:border-primary-600 
+       block 
+       p-2.5 
+       dark:bg-gray-700 
+       dark:border-gray-600 
+       dark:placeholder-gray-400 
+       dark:text-white 
+       dark:focus:ring-blue-500 
+       dark:focus:border-blue-500
+       w-32
+       sm:w-20
+       md:w-20
+       lg:w-20
+       "
+       onChange={(e) => setSize(parseInt(e.target.value))}
+      >
+       {sizeEnum.map((size) => {
+        return (
+         <option
+          key={size}
+          value={size}
+         >
+          {size}
+         </option>
+        )
+       })}
+      </select>
+      <div className="w-32 sm:w-32 md:w-32 lg:w-32">
        <Button
         text="Buscar"
         send={onSubmitHandler}
@@ -75,7 +117,7 @@ const AllBalances = () => {
        />
       </div>
      </div>
-     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg: grid-cols-4 gap-4">
+     <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {balances.map((balance) => {
        return (
         <Card
@@ -86,10 +128,10 @@ const AllBalances = () => {
       })}
      </div>
      <div className="mt-4 text-left">
-      <TotalExpendbalance startDate={startDate.value} endDate={endDate.value} />
+      <TotalExpendbalance startDate={startDate.value} endDate={endDate.value} size={size} />
      </div>
     </div>
-   </div>
+   </div >
   </>
  )
 }
