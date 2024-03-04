@@ -31,6 +31,9 @@ const AddBalance = () => {
     value: "",
     invalid: false
   });
+  const [isLate, setIsLate] = useState({
+    value: false
+  });
 
   useEffect(() => {
     const updateAmount = () => {
@@ -88,6 +91,14 @@ const AddBalance = () => {
     }
   }
 
+  const handleCheckBox = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsLate({ value: event.target.checked });
+  };
+
+  const isLateEntry = () => {
+    return isLate.value;
+  };
+
   return (
     <>
       <Navbar />
@@ -125,7 +136,7 @@ const AddBalance = () => {
                   />
                 </div>
                 <div className="sm:w-[300px] md:w-[380px]">
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Descrição da despesa: </label>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Forma do pagamento: </label>
                   <select
                     className="
                         bg-gray-50 
@@ -155,16 +166,38 @@ const AddBalance = () => {
                     ))}
                   </select>
                 </div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Descrição da despesa: </label>
-                <div className="mx-auto">
-                  <Input
-                    required={true}
-                    placeholder="Data"
-                    type="date"
-                    invalid={date.invalid}
-                    onChange={setDate}
-                  />
-                </div>
+                <>
+                  {
+                    !isLateEntry() ?
+                      <div className="pt-2">
+                        <input
+                          type="checkbox"
+                          onChange={handleCheckBox}
+
+                          checked={false}
+                        />
+                        <label className="pt-2 p-6 text-white">Lançamento em outra data?</label>
+                      </div>
+                      :
+                      <div className="pt-2">
+                        <input
+                          type="checkbox"
+                          onChange={handleCheckBox}
+                          checked
+                        />
+                        <label className="p-6 text-white">Lançamento em outra data?</label>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-2">Data da despesa: </label>
+                        <div className="mx-auto">
+                          <Input
+                            required={true}
+                            placeholder="Data"
+                            type="date"
+                            invalid={date.invalid}
+                            onChange={setDate} />
+                        </div>
+                      </div>
+                  }
+                </>
                 <div className="pt-6">
                   <Button
                     text="Adicionar"

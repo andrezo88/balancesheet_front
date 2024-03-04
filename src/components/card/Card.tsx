@@ -30,7 +30,7 @@ export const Card = (props: Props) => {
   return (
 
     <div className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Descrição da despesa: {data.description}</h5>
+      <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center">Descrição:<br /> {data.description}</h5>
       <p className="font-normal text-gray-700 dark:text-gray-200"><b>Valor da despesa:</b> {data.amount}</p>
       <p className="font-normal text-gray-700 dark:text-gray-200"><b>Data da despesa:</b> {data.date}</p>
       <p className="font-normal text-gray-700 dark:text-gray-200"><b>Tipo do pagamento:</b> {data.type}</p>
