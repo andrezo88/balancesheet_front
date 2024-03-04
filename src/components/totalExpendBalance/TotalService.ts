@@ -3,7 +3,7 @@ import axios from "axios";
 export default class TotalService {
  private loginToken = JSON.parse(localStorage.getItem("token") || "{}");
 
- async getTotalExpendBalance(startDate: string, endDate: string) {
+ async getTotalExpendBalance(startDate: string, endDate: string, size?: number) {
   try {
    const response = await axios.get("http://localhost:8080/api/v1/balance-total", {
     headers: {
@@ -12,6 +12,7 @@ export default class TotalService {
     params: {
      startDate: startDate,
      endDate: endDate,
+     size: size,
      userId: localStorage.getItem("userId") ?? "",
     }
    });
